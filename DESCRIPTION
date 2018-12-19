@@ -1,0 +1,13 @@
+Package: psmc2msprime
+Title: What the Package Does (one line, title case)
+Version: 0.0.0.9000
+Authors@R: person("Jesse", "Garcia", email = "jessegarcia562@ucla.edu", role = c("aut", "cre"))
+Description: Converts msmc/psmc' output into a function to simulate demographies with msprime
+Depends: R (>= 3.3.0)
+License: What license is it under?
+Encoding: UTF-8
+LazyData: true
+Imports:
+	dplyr,
+	glue,
+	readr

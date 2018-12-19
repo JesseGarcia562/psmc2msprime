@@ -1,0 +1,28 @@
+import msprime
+
+def msmc_model(mu=1.5e-8, phi=2e-8, length=1e4, sampleHowManyHaploidGenomes=2, debug=False, seed=30):
+    population_configurations = [
+        msprime.PopulationConfiguration(
+            sample_size=sampleHowManyHaploidGenomes)
+    ]
+    demographic_events = [
+
+{PopulationParametersChange}
+
+		]
+    
+    if debug:
+        # Use the demography debugger to print out the demographic history
+        # that we have just described.
+        dd = msprime.DemographyDebugger(
+            population_configurations=population_configurations,
+            demographic_events=demographic_events)
+        dd.print_history()
+    else:
+        sim = msprime.simulate(population_configurations=population_configurations,
+                               demographic_events=demographic_events,
+                               mutation_rate=mu, 
+                               recombination_rate=phi, 
+                               length=length,
+                               random_seed=seed)
+        return sim
