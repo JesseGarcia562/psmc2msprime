@@ -1,5 +1,5 @@
 computePiPerCallableSites<-function(msprimeVCFPath, windowSize=500000){
-  df<-as_tibble(fread("../data/output2.vcf"))
+  df<-as_tibble(fread(msprimeVCFPath))
   df<-df %>%
     mutate(Homozygous=str_detect(msp_0, "1\\|1")) %>%
     mutate(Heterozygous=!Homozygous)
