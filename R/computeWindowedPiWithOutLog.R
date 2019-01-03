@@ -1,7 +1,5 @@
-msmcOutLog
-mutationRate
-
-computeWindowedPiWithOutLog<-function (msmcOutLog, mutationRate,rowToStartAt=40) 
+#Row To start at is 0 based. All rows = rowToStartAt=40
+computeWindowedPiWithOutLog<-function (msmcOutLog, mutationRate,rowToStartAt=40, totalGenomeLength=8e+06) 
 {
   msmcInference <- readMSMCInference(pathOfMSMCOutFinal = msmcOutLog, 
                                      mutationRate = mutationRate)
@@ -19,11 +17,20 @@ computeWindowedPiWithOutLog<-function (msmcOutLog, mutationRate,rowToStartAt=40)
     map(~generatePopulationParameterChanges(.x))
   dir.create("../data/msprimeSimulationScripts")
   simulationParameters <- simulationParameters %>% mutate(outpathOfMsprimeScript = glue("../data/msprimeSimulationScripts/msprime_simulation_{maximumGeneration}.py"))
+  
+
+  simulationParameters<- simulationParameters %>%
+    filter(rowsToNotInclude == rowToStartAt)
+
+  glue("In this script the oldest generation simulated is {simulationParameters$maximumGeneration}")
+  
+  testthat::expect_equal(length(simulationParameters$maximumGeneration), 1, info="Too many rows selected, change rowToStartAt (remember it is one indexed)")
+  
   map2(.x = simulationParameters$PopulationParametersChange, 
        .y = simulationParameters$outpathOfMsprimeScript, ~generateMSPrimeFunction(textOfFunction = textOfFun, 
                                                                                   outPath = .y, PopulationParametersChangeInput = .x))
   simulationParameters$Pi <- simulationParameters$outpathOfMsprimeScript %>% 
-    map_dbl(~withScriptGeneratePi(scriptPath = .x, outPath = glue("{.x}.vcf"), 
-                                  length = 1e+06) %>% pull(piPerSite) %>% mean())
+    map(~withScriptGeneratePi(scriptPath = .x, outPath = glue("{.x}.vcf"), 
+                                  totalGenomeLength = totalGenomeLength) %>% pull(piPerSite))
   return(simulationParameters)
 }
