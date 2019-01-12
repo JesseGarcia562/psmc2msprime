@@ -1,6 +1,7 @@
 #Row To start at is 0 based. All rows = rowToStartAt=40
 computeNumberOfHeterozygotesWithOutLog<-function (msmcOutLog, mutationRate,rowToStartAt=40, totalGenomeLength=8e+06, seed=30) 
 {
+  browser()
   msmcInference <- readMSMCInference(pathOfMSMCOutFinal = msmcOutLog, 
                                      mutationRate = mutationRate)
   rowsToNotInclude <- c(40:1)
@@ -30,7 +31,12 @@ computeNumberOfHeterozygotesWithOutLog<-function (msmcOutLog, mutationRate,rowTo
        .y = simulationParameters$outpathOfMsprimeScript, ~generateMSPrimeFunction(textOfFunction = textOfFun, 
                                                                                   outPath = .y, PopulationParametersChangeInput = .x))
   simulationParameters$numberOfHeterozygotes <- simulationParameters$outpathOfMsprimeScript %>% 
-    map(~withScriptCountHeterozygotes(scriptPath = .x, outPath = glue("{.x}_seed{seed}.vcf"), 
+    map_dbl(~withScriptCountHeterozygotes(scriptPath = .x, outPath = glue("{.x}_seed{seed}.vcf"), 
                                   totalGenomeLength = totalGenomeLength, seed=seed) )
+
+
+  simulationParameters$seed=seed
+  simulationParameters$totalGenomeLength=totalGenomeLength
+  simulationParameters$msmcOutLog=msmcOutLog
   return(simulationParameters)
 }
