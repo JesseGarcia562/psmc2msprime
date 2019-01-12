@@ -1,7 +1,7 @@
 #Row To start at is 0 based. All rows = rowToStartAt=40
 computeNumberOfHeterozygotesWithOutLog<-function (msmcOutLog, mutationRate,rowToStartAt=40, totalGenomeLength=8e+06, seed=30) 
 {
-  browser()
+  #browser()
   msmcInference <- readMSMCInference(pathOfMSMCOutFinal = msmcOutLog, 
                                      mutationRate = mutationRate)
   rowsToNotInclude <- c(40:1)
