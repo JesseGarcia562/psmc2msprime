@@ -21,7 +21,7 @@ heterozygous<-heterozygous %>%
 
 multihet<-heterozygous %>% 
   dplyr::select(`#CHROM`, POS,heterozygousDifferences, orderOfAlleles ) %>%
-  dplyr::mutate(heterozygousDifferences=parse_integer(heterozygousDifferences))
+  dplyr::mutate(heterozygousDifferences=as.integer(heterozygousDifferences))
 
 readr::write_tsv(x=multihet, path=outpath, col_names = FALSE)
 
