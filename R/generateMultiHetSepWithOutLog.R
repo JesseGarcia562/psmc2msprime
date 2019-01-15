@@ -20,7 +20,7 @@ generateMultiHetSepWithOutLog<-function(msmcOutLog, mutationRate,rowToStartAt=40
   simulationParameters$PopulationParametersChange <- simulationParameters$truncatedMSMCInference %>% 
     map(~generatePopulationParameterChanges(.x))
   dir.create("../data/msprimeSimulationScripts")
-  simulationParameters <- simulationParameters %>% mutate(outpathOfMsprimeScript = glue("../data/msprimeSimulationScripts/msprime_simulation_{maximumGeneration}.py"))
+  simulationParameters <- simulationParameters %>% mutate(outpathOfMsprimeScript = glue("../data/msprimeSimulationScripts/msprime_simulation_{maximumGeneration}_{seed}.py"))
   
   
   simulationParameters<- simulationParameters %>%
