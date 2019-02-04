@@ -20,7 +20,7 @@
 generateMultiHetSep<-function(msprimeVCFPath, outpath){
   
 
-df<-dplyr::as_tibble(data.table::fread(msprimeVCF))
+df<-dplyr::as_tibble(data.table::fread(msprimeVCFPath))
 
 df<-df %>%
   dplyr::mutate(Homozygous=str_detect(msp_0, "1\\|1")) %>%
