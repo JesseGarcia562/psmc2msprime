@@ -17,7 +17,7 @@
 
 
 simulateInMSPrime<-function(msprimeFunctionPath, mutationRate=1.5e-8, phi=2e-8, length=1e4, sampleHowManyHaploidGenomes=2, debug=FALSE, seed=30){
-source_python(msprimeFunctionPath)
+reticulate::source_python(msprimeFunctionPath)
 simulation<-msmc_model(mu=mutationRate, phi=phi, length=as.integer(length), sampleHowManyHaploidGenomes=as.integer(sampleHowManyHaploidGenomes), debug=debug, seed=as.integer(seed))
 return(simulation)
 }
