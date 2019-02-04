@@ -11,3 +11,4 @@ Imports:
 	dplyr,
 	glue,
 	readr
+RoxygenNote: 6.0.1

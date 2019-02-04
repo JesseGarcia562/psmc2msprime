@@ -1,3 +1,17 @@
+#' Generate the population parameter changes for msprime.
+#'
+#' Uses msmcInference tibble to generate the population parameter changes for a msprime function. 
+#'
+#' @param msmcInference The tibble that readMSMCInference generates. 
+#'
+#' @return A character that desribes the population parameter changes msprime will simulate. Based entirely off the msmcInference. 
+#'
+#' @examples
+#' msmcInference<-readMSMCInference(pathOfMSMCOutFinal = "../data/msprimeMultiHetSep/simulatedMsprime.oak.msmc.out.final.txt", mutationRate = 1e-8)
+#' populationParametersChange<-generatePopulationParameterChanges(msmcInference)
+#' @export
+
+
 generatePopulationParameterChanges<-function(msmcInference){
 
 populationParameterChanges<-glue::glue("
