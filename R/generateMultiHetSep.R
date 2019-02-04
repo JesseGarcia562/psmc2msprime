@@ -44,5 +44,5 @@ multihet<-heterozygous %>%
 
 readr::write_tsv(x=multihet, path=outpath, col_names = FALSE)
 
-invisibly(outpath)
+invisible(outpath)
 }
