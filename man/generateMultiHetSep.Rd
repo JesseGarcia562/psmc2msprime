@@ -4,12 +4,12 @@
 \alias{generateMultiHetSep}
 \title{Write out multiHetSep (input of MSMC/PSMC') of simulated individual}
 \usage{
-generateMultiHetSep(msprimeVCF, outpath)
+generateMultiHetSep(msprimeVCFPath, outpath)
 }
 \arguments{
-\item{msprimeVCF}{Path to the msprime generated VCF.}
-
 \item{outpath}{Output path for the multiHetSep file that is being generated.}
+
+\item{msprimeVCF}{Path to the msprime generated VCF.}
 }
 \value{
 Returns nothing. But writes a multihetsep (input to PSMC'/MSMC) file to the given outpath.

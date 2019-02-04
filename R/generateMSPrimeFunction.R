@@ -14,7 +14,7 @@
 #' @export
 
 
-generateMSPrimeFunction<-function(outPath, PopulationParametersChangeInput){
+generateMSPrimeFunction<-function(PopulationParametersChangeInput,outpath){
   textOfFunction<-"
 import msprime
 
@@ -49,5 +49,7 @@ def msmc_model(mu=1.5e-8, phi=2e-8, length=1e4, sampleHowManyHaploidGenomes=2, d
 
 
   fn<-glue::glue(textOfFunction, PopulationParametersChange= PopulationParametersChangeInput)
-  readr::write_file(fn,path=outPath)
+  readr::write_file(fn,path=outpath)
+#Return outpath invisibly for use in tidy pipe
+  invisibly(outpath)
 }

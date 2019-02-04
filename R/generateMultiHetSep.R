@@ -17,7 +17,7 @@
 #' generateMultiHetSep(msprimeVCF = "../data/msprimeQLob.vcf",outpath = "../data/msprimeQLob_multihetsep.txt")
 #' @export
 
-generateMultiHetSep<-function(msprimeVCF, outpath){
+generateMultiHetSep<-function(msprimeVCFPath, outpath){
   
 
 df<-dplyr::as_tibble(data.table::fread(msprimeVCF))
@@ -44,4 +44,5 @@ multihet<-heterozygous %>%
 
 readr::write_tsv(x=multihet, path=outpath, col_names = FALSE)
 
+invisibly(outpath)
 }

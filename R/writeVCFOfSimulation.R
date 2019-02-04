@@ -24,5 +24,5 @@ writeVCFOfSimulation<-function(simulation, outpath, ploidy=2){
     simulation$write_vcf(file,  ploidy=as.integer(ploidy))
   })
   
-  
+  invisibly(outpath)
 }
