@@ -15,7 +15,7 @@
 
 readMSMCInference<-function(pathOfMSMCOutFinal, mutationRate){
   msmcOutLog<-readr::read_delim(pathOfMSMCOutFinal, delim="\t", col_names=T)
-  testthat::expect_named(msmcOutLog,  c('time_index', 'left_time_boundary', 'right_time_boundary', 'lambda_00'), info="Data is not formatted as an MSMC out.final.txt file")
+  #testthat::expect_named(msmcOutLog,  c('time_index', 'left_time_boundary', 'right_time_boundary', 'lambda_00'), info="Data is not formatted as an MSMC out.final.txt file")
 
   
   ## Using MSMC formula to convert output to "generations ago" and a "effective population size." Then, rounding the results for msprime
