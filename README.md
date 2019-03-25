@@ -6,8 +6,10 @@ Convert output from PSMC' or MSMC to a function for simulating under the inferre
 ```r
 install.packages("devtools")
 install.packages("tidyverse")
+install.packages("glue")
 devtools::install_github("jessegarcia562/psmc2msprime")
 library(tidyverse)
+library(glue)
 library(psmc2msprime)
 ```
 
